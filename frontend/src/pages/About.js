@@ -2,16 +2,19 @@ import React from 'react';
 
 function About() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-10 text-center">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">About the Model</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Learn about our AI model architecture, training process, and purpose
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-white via-primary-50/30 to-primary-100/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-12 text-center animate-fadeInUp">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4">
+            About the <span className="gradient-text">Model</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Learn about our AI model architecture, training process, and purpose
+          </p>
+        </div>
 
-      {/* Architecture Section */}
-      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
+        {/* Architecture Section */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 mb-8 border border-primary-100/50 animate-fadeInUp">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Model Architecture</h2>
         <div className="prose max-w-none">
           <p className="text-gray-700 mb-4">
@@ -29,8 +32,8 @@ function About() {
         </div>
       </div>
 
-      {/* Training Section */}
-      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
+        {/* Training Section */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 mb-8 border border-primary-100/50 animate-fadeInUp">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Training Process</h2>
         <div className="prose max-w-none">
           <p className="text-gray-700 mb-4">
@@ -51,8 +54,8 @@ function About() {
         </div>
       </div>
 
-      {/* Purpose Section */}
-      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
+        {/* Purpose Section */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 mb-8 border border-primary-100/50 animate-fadeInUp">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Purpose & Applications</h2>
         <div className="prose max-w-none">
           <p className="text-gray-700 mb-4">
@@ -72,25 +75,26 @@ function About() {
         </div>
       </div>
 
-      {/* Technical Details */}
-      <div className="bg-white rounded-xl shadow-lg p-8 border border-primary-100">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-4">Technical Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-primary-50 rounded-lg p-4">
+        {/* Technical Details */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 border border-primary-100/50 animate-fadeInUp">
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">Technical Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
             <h3 className="font-semibold text-gray-800 mb-2">Model Type</h3>
             <p className="text-gray-700">Transformer + Diffusion + VAE</p>
           </div>
-          <div className="bg-primary-50 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-800 mb-2">Checkpoint Format</h3>
-            <p className="text-gray-700">PyTorch (.pth)</p>
-          </div>
-          <div className="bg-primary-50 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-800 mb-2">Training Dataset</h3>
-            <p className="text-gray-700">Cotton Weed Images</p>
-          </div>
-          <div className="bg-primary-50 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
+              <h3 className="font-bold text-gray-800 mb-2">Checkpoint Format</h3>
+              <p className="text-gray-700">PyTorch (.pth)</p>
+            </div>
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
+              <h3 className="font-bold text-gray-800 mb-2">Training Dataset</h3>
+              <p className="text-gray-700">Cotton Weed Images</p>
+            </div>
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
             <h3 className="font-semibold text-gray-800 mb-2">FID Score</h3>
             <p className="text-gray-700">21.8</p>
+            </div>
           </div>
         </div>
       </div>

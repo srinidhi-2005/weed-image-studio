@@ -30,16 +30,19 @@ function Metrics() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-10 text-center">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">Model Metrics</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Performance metrics and evaluation results for our AI model
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-white via-primary-50/30 to-primary-100/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-12 text-center animate-fadeInUp">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4">
+            Model <span className="gradient-text">Metrics</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Performance metrics and evaluation results for our AI model
+          </p>
+        </div>
 
-      {/* FID Score Chart */}
-      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
+        {/* FID Score Chart */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 mb-8 border border-primary-100/50 animate-fadeInUp">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">FID Score Over Training</h2>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={fidData}>
@@ -57,8 +60,8 @@ function Metrics() {
         </div>
       </div>
 
-      {/* Metrics Comparison */}
-      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
+        {/* Metrics Comparison */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 mb-8 border border-primary-100/50 animate-fadeInUp">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Metrics Comparison</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={metricComparison}>
@@ -73,8 +76,8 @@ function Metrics() {
         </ResponsiveContainer>
       </div>
 
-      {/* Training Loss */}
-      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
+        {/* Training Loss */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 mb-8 border border-primary-100/50 animate-fadeInUp">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Training & Validation Loss</h2>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={trainingMetrics}>
@@ -89,22 +92,23 @@ function Metrics() {
         </ResponsiveContainer>
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-primary-500">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">FID Score</h3>
-          <p className="text-3xl font-bold text-primary-600">21.8</p>
-          <p className="text-sm text-gray-600 mt-2">Lower is better</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-primary-500">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">IS Score</h3>
-          <p className="text-3xl font-bold text-primary-600">3.2</p>
-          <p className="text-sm text-gray-600 mt-2">Higher is better</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-primary-500">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">LPIPS</h3>
-          <p className="text-3xl font-bold text-primary-600">0.15</p>
-          <p className="text-sm text-gray-600 mt-2">Lower is better</p>
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fadeInUp">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border-l-4 border-primary-500 hover-lift">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">FID Score</h3>
+            <p className="text-3xl font-bold text-primary-600">21.8</p>
+            <p className="text-sm text-gray-600 mt-2">Lower is better</p>
+          </div>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border-l-4 border-primary-500 hover-lift">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">IS Score</h3>
+            <p className="text-3xl font-bold text-primary-600">3.2</p>
+            <p className="text-sm text-gray-600 mt-2">Higher is better</p>
+          </div>
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border-l-4 border-primary-500 hover-lift">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">LPIPS</h3>
+            <p className="text-3xl font-bold text-primary-600">0.15</p>
+            <p className="text-sm text-gray-600 mt-2">Lower is better</p>
+          </div>
         </div>
       </div>
     </div>
