@@ -15,20 +15,22 @@ function Home() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="text-center animate-fadeInUp">
           <div className="inline-block mb-6">
-            <span className="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold animate-fadeIn">
+            <span className="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-lg font-semibold animate-fadeIn">
               ✨ AI-Powered Image Generation
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mt-7 mb-7 leading-tight">
             AI-Powered Cotton Weed
             <br />
             <span className="gradient-text">Image Generator</span>
           </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-1 max-w-3xl mx-auto leading-relaxed">
+            Transform your cotton weed images using advanced DL
+          </p>
           <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Transform your cotton weed images using advanced <span className="font-semibold text-primary-700">Transformer + Diffusion + MRAR</span> deep learning technology. 
             Generate high-quality, realistic variations for research and agricultural applications.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <div className="flex flex-col sm:flex-row gap-7 justify-center animate-fadeInUp mt-16" style={{ animationDelay: '0.2s' }}>
             <Link
               to="/generate"
               className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-lg font-semibold rounded-xl shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
@@ -65,32 +67,32 @@ function Home() {
             {
               icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
               title: "AI Image Generation",
-              description: "Upload your cotton weed images and generate multiple high-quality variations using our advanced deep learning model. Choose from 4, 8, or 16 generated images per request."
+              description: "Upload your cotton weed images and generate multiple high-quality variations using our advanced deep learning model."
             },
             {
               icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
               title: "Performance Metrics",
-              description: "Track your model's performance with detailed metrics including FID scores, training loss, and interactive charts. Monitor model quality and improvements over time."
+              description: "Monitor model quality and improvements over time."
             },
             {
               icon: "M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
               title: "Easy Download",
-              description: "Download individual generated images or get all images at once as a ZIP file. Simple, fast, and convenient for your research and development needs."
+              description: "Download individual generated images or get all images at once as a ZIP file."
             },
             {
               icon: "M13 10V3L4 14h7v7l9-11h-7z",
               title: "Fast Processing",
-              description: "Leverage our optimized deep learning pipeline for quick image generation. Get results in minutes, not hours, with our efficient model architecture."
+              description: "Leverage our optimized deep learning pipeline for quick image generation within in minutes."
             },
             {
               icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
               title: "Advanced Architecture",
-              description: "Built on Transformer + Diffusion + MRAR technology for state-of-the-art image generation. Trained specifically on cotton weed datasets for optimal results."
+              description: "Built on Transformer + Diffusion + MRAR technology for state-of-the-art image generation."
             },
             {
               icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
               title: "Responsive Design",
-              description: "Beautiful, modern interface that works seamlessly on desktop, tablet, and mobile devices. Clean white and green theme with intuitive navigation."
+              description: "Beautiful, modern interface that works seamlessly on desktop, tablet, and mobile devices."
             }
           ].map((feature, index) => (
             <div

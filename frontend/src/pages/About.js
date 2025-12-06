@@ -23,7 +23,7 @@ function About() {
           <ul className="list-disc list-inside space-y-2 text-gray-700 mb-6">
             <li><strong>Transformer:</strong> Captures long-range dependencies and contextual relationships in the input images</li>
             <li><strong>Diffusion Model:</strong> Generates high-quality images through iterative denoising process</li>
-            <li><strong>MRAR (Multi-Resolution Attention Refinement):</strong> Enhances image quality through multi-resolution attention mechanisms</li>
+            <li><strong>MRAR (Multi-Reference Auto Regression):</strong> Enhances image quality through multi-resolution attention mechanisms</li>
           </ul>
           <p className="text-gray-700">
             This hybrid architecture allows the model to understand the complex patterns and characteristics of cotton weed images,
@@ -48,7 +48,7 @@ function About() {
             <li>Fine-tuning on specific cotton weed classes</li>
           </ul>
           <p className="text-gray-700">
-            The model achieved a FID score of 21.8, demonstrating its ability to generate high-quality, realistic images
+            The model achieved a FID score of 50.00, demonstrating its ability to generate high-quality, realistic images
             that closely match the distribution of the training data.
           </p>
         </div>
@@ -81,7 +81,7 @@ function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
             <h3 className="font-semibold text-gray-800 mb-2">Model Type</h3>
-            <p className="text-gray-700">Transformer + Diffusion + VAE</p>
+            <p className="text-gray-700">Transformer + Diffusion + MRAR</p>
           </div>
             <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
               <h3 className="font-bold text-gray-800 mb-2">Checkpoint Format</h3>
@@ -89,11 +89,11 @@ function About() {
             </div>
             <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
               <h3 className="font-bold text-gray-800 mb-2">Training Dataset</h3>
-              <p className="text-gray-700">Cotton Weed Images</p>
+              <p className="text-gray-700">CottonWeedID15 Images</p>
             </div>
             <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-6 hover-lift border border-primary-200">
             <h3 className="font-semibold text-gray-800 mb-2">FID Score</h3>
-            <p className="text-gray-700">21.8</p>
+            <p className="text-gray-700">50.00</p>
             </div>
           </div>
         </div>
