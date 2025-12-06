@@ -2,14 +2,16 @@ import React from 'react';
 
 function About() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">About the Model</h1>
-        <p className="text-gray-600">Learn about our AI model architecture and training process</p>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mb-10 text-center">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">About the Model</h1>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          Learn about our AI model architecture, training process, and purpose
+        </p>
       </div>
 
       {/* Architecture Section */}
-      <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Model Architecture</h2>
         <div className="prose max-w-none">
           <p className="text-gray-700 mb-4">
@@ -18,7 +20,7 @@ function About() {
           <ul className="list-disc list-inside space-y-2 text-gray-700 mb-6">
             <li><strong>Transformer:</strong> Captures long-range dependencies and contextual relationships in the input images</li>
             <li><strong>Diffusion Model:</strong> Generates high-quality images through iterative denoising process</li>
-            <li><strong>VAE (Variational Autoencoder):</strong> Encodes images into a latent space and decodes them back, enabling efficient generation</li>
+            <li><strong>MRAR (Multi-Resolution Attention Refinement):</strong> Enhances image quality through multi-resolution attention mechanisms</li>
           </ul>
           <p className="text-gray-700">
             This hybrid architecture allows the model to understand the complex patterns and characteristics of cotton weed images,
@@ -28,7 +30,7 @@ function About() {
       </div>
 
       {/* Training Section */}
-      <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Training Process</h2>
         <div className="prose max-w-none">
           <p className="text-gray-700 mb-4">
@@ -50,7 +52,7 @@ function About() {
       </div>
 
       {/* Purpose Section */}
-      <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-primary-100">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Purpose & Applications</h2>
         <div className="prose max-w-none">
           <p className="text-gray-700 mb-4">
@@ -71,7 +73,7 @@ function About() {
       </div>
 
       {/* Technical Details */}
-      <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="bg-white rounded-xl shadow-lg p-8 border border-primary-100">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Technical Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-primary-50 rounded-lg p-4">
