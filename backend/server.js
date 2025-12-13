@@ -17,10 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-image-studio', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-image-studio')
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
@@ -43,8 +40,29 @@ const generationSchema = new mongoose.Schema({
 const Generation = mongoose.model('Generation', generationSchema);
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Server is running' });
+app.get('/api/health', async (req, res) => {
+  try {
+    // Check model server health
+    const modelServerHealth = await axios.get(`${MODEL_SERVER_URL}/health`, {
+      timeout: 5000
+    }).catch(() => null);
+    
+    res.json({ 
+      status: 'ok', 
+      message: 'Server is running',
+      modelServer: modelServerHealth ? {
+        status: modelServerHealth.data.status,
+        modelLoaded: modelServerHealth.data.model_loaded,
+        vaeLoaded: modelServerHealth.data.vae_loaded
+      } : { status: 'unreachable' }
+    });
+  } catch (error) {
+    res.json({ 
+      status: 'ok', 
+      message: 'Server is running',
+      modelServer: { status: 'error', error: error.message }
+    });
+  }
 });
 
 // Generate images endpoint
@@ -92,9 +110,26 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
       });
     } catch (modelError) {
       console.error('Model server error:', modelError);
+      
+      // Check if it's a 503 Service Unavailable (model not loaded)
+      if (modelError.response && modelError.response.status === 503) {
+        return res.status(503).json({ 
+          error: 'Model server is not ready. The AI models are not loaded. Please check the model server logs and restart it.',
+          details: modelError.response.data?.detail || modelError.message 
+        });
+      }
+      
+      // Check if connection was refused (server not running)
+      if (modelError.code === 'ECONNREFUSED') {
+        return res.status(503).json({ 
+          error: 'Cannot connect to model server. Please ensure the model server is running on port 8000.',
+          details: modelError.message 
+        });
+      }
+      
       return res.status(500).json({ 
         error: 'Failed to generate images. Model server may be unavailable.',
-        details: modelError.message 
+        details: modelError.response?.data?.detail || modelError.message 
       });
     }
   } catch (error) {

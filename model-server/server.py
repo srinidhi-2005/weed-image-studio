@@ -60,6 +60,7 @@ app.add_middleware(
 model = None
 vae = None
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model_load_error = None  # Store the last error message
 
 # Configuration
 # IMPORTANT: Update num_classes to match your trained model
@@ -123,7 +124,8 @@ def verify_file_paths(base_dir, model_base_dir):
 
 def load_model():
     """Load the TransDiff model and VAE from checkpoints"""
-    global model, vae
+    global model, vae, model_load_error
+    model_load_error = None
     
     try:
         # Find model directory
@@ -361,8 +363,8 @@ def load_model():
             def device_aware_samples(self, labels, num_sampling_steps=100, cfg=1.0, sampler='maruyama', scale_0=1.0, scale_1=1.0):
                 """Wrapper that ensures device compatibility"""
                 bsz = labels.size(0)
-                # Use device from labels instead of hardcoded .cuda()
-                tokens = torch.zeros(bsz, self.seq_len, self.token_embed_dim, device=labels.device, dtype=labels.dtype)
+                # Use device from labels but dtype should be float32 for tokens (labels can be long for class indices)
+                tokens = torch.zeros(bsz, self.seq_len, self.token_embed_dim, device=labels.device, dtype=torch.float32)
                 class_embedding = self.class_emb(labels)
                 
                 if not cfg == 1.0:
@@ -397,9 +399,11 @@ def load_model():
         return True
         
     except Exception as e:
-        print(f"Error loading model: {str(e)}")
+        error_msg = f"Error loading model: {str(e)}"
+        print(error_msg)
         import traceback
         traceback.print_exc()
+        model_load_error = error_msg
         return False
 
 def preprocess_image(image_base64: str) -> torch.Tensor:
@@ -463,11 +467,13 @@ def generate_images(num_samples: int, label: int = 0) -> List[torch.Tensor]:
                     latent_size = img_size // 8  # Typical VAE downsampling
                     latents = latents.view(B, embed_dim, latent_size, latent_size)
             
+            # Ensure latents are float32 before normalization
+            latents = latents.to(torch.float32)
             # Normalize latents (divide by 0.18215 as in the training code)
             latents = latents / 0.18215
             
-            # Ensure latents are on correct device
-            latents = latents.to(device)
+            # Ensure latents are on correct device and dtype (float32)
+            latents = latents.to(device).to(torch.float32)
             
             # Decode in batches to avoid memory issues
             batch_size = min(8, num_samples)  # Smaller batch for memory safety
@@ -476,6 +482,8 @@ def generate_images(num_samples: int, label: int = 0) -> List[torch.Tensor]:
             for i in range(0, num_samples, batch_size):
                 batch_latents = latents[i:i + batch_size]
                 try:
+                    # Ensure batch_latents are float32 for VAE
+                    batch_latents = batch_latents.to(torch.float32)
                     decoded = vae.decode(batch_latents)
                     decoded = torch.clamp(decoded, -1, 1)
                     images.append(decoded.cpu())
@@ -484,6 +492,7 @@ def generate_images(num_samples: int, label: int = 0) -> List[torch.Tensor]:
                     # Try with single image
                     for j in range(batch_latents.shape[0]):
                         single_latent = batch_latents[j:j+1]
+                        single_latent = single_latent.to(torch.float32)
                         decoded = vae.decode(single_latent)
                         decoded = torch.clamp(decoded, -1, 1)
                         images.append(decoded.cpu())
@@ -539,7 +548,9 @@ async def health():
     return {
         "status": "healthy",
         "model_loaded": model is not None,
-        "vae_loaded": vae is not None
+        "vae_loaded": vae is not None,
+        "error": model_load_error if model_load_error else None,
+        "device": str(device)
     }
 
 @app.post("/generate", response_model=GenerationResponse)
@@ -606,7 +617,8 @@ async def generate(request: GenerationRequest):
         raise
     except Exception as e:
         import traceback
-        traceback.print_exc()
+        error_details = traceback.format_exc()
+        print(f"Generation error details:\n{error_details}")
         raise HTTPException(status_code=500, detail=f"Generation failed: {str(e)}")
 
 if __name__ == "__main__":
